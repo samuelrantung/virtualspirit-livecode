@@ -4,6 +4,7 @@ import SearchBar from "./components/SearchBar";
 import PokemonList from "./components/PokemonList";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPokemons } from "./slice/pokemonSlice";
+import SortButton from "./components/SortButton";
 
 function bubbleSort(arr: { name: string }, order: "asc" | "desc") {
   const sortedArray = [...arr];
@@ -47,14 +48,7 @@ function App() {
     <>
       <div>
         <SearchBar search={search} setSearch={setSearch} />
-        <button
-          onClick={() =>
-            setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
-          }
-          style={{ marginLeft: "10px", padding: "8px" }}
-        >
-          Sort: {sortOrder === "asc" ? "A → Z" : "Z → A"}
-        </button>
+        <SortButton sortOrder={sortOrder} setSortOrder={setSortOrder} />
         <PokemonList pokemons={sorted} />
       </div>
     </>
